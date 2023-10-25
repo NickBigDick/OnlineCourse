@@ -97,7 +97,7 @@ namespace OnGeniiConsoleApp
                 }
                 Console.WriteLine("Пройдем тест снова? y/n");
                 if (Console.ReadLine() == "n") { work_flag = false; }
-                //комментарий
+                //комментарий новые по разному всякое
             }
         }
     }
