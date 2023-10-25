@@ -45,7 +45,7 @@ namespace OnGeniiConsoleApp
         }
 
 
-        static string[] GetDiagnoses()
+        static string GetDiagnoses(int rightAnswers, int totalQuestions)
         {
             string[] diagnoses = new string[6];
             diagnoses[0] = "кретин";
@@ -54,10 +54,16 @@ namespace OnGeniiConsoleApp
             diagnoses[3] = "нормальный";
             diagnoses[4] = "талант";
             diagnoses[5] = "гении";
-            return diagnoses;
+
+            double percentage =  (double) rightAnswers / totalQuestions;
+            int index = (int) Math.Round(percentage * 6.0);
+            return diagnoses[index];
 
         }
-
+        //static void Main(string[] args)
+        //{
+        //    string[] d = GetDiagnoses();
+        //}
 
         static void Main(string[] args)
         {
@@ -100,9 +106,9 @@ namespace OnGeniiConsoleApp
                     }
                     Console.WriteLine("Количество правильных ответов: " + countRightAnswers);
 
-                    string[] diagnoses = GetDiagnoses();
+                    string diagnose = GetDiagnoses(countRightAnswers, countQuestions);
 
-                    Console.WriteLine($"Дорогой {username}, Ваш диагноз:" + diagnoses[countRightAnswers]);
+                    Console.WriteLine($"Дорогой {username}, Ваш диагноз:" + diagnose);
                 }
                 Console.WriteLine("Пройдем тест снова? y/n");
                 if (Console.ReadLine() == "n") { work_flag = false; }
