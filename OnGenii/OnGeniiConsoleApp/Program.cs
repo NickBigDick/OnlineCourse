@@ -40,11 +40,6 @@ namespace OnGeniiConsoleApp
                 shufQuestions[i] = questions[index];
                 shufAnswers[i] = answers[index];
             }
-            foreach(string s in shufQuestions)
-            {
-
-                Console.WriteLine(s);
-            }
 
             return (shufQuestions, shufAnswers);
         }
@@ -83,7 +78,21 @@ namespace OnGeniiConsoleApp
                 {
                     Console.WriteLine("Вопрос №" + (i + 1));
                     Console.WriteLine(questions[i]);
-                    int userAnswer = Convert.ToInt32(Console.ReadLine());
+                    bool isInputCorrect = false;
+                    double userAnswer = 0;
+                    while (isInputCorrect == false)
+                    {
+                        string userInput = Console.ReadLine();
+                        isInputCorrect = double.TryParse(userInput, out userAnswer);
+                        if (isInputCorrect == false)
+                        {
+                            Console.WriteLine("Пожалуйста, введите число!");
+                            Console.WriteLine("Вопрос №" + (i + 1));
+                            Console.WriteLine(questions[i]);
+                        }
+
+                    }
+
                     int rightAnswer = answers[i];
                     if (userAnswer == rightAnswer)
                     {
