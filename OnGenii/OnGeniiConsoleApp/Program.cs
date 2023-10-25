@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,21 @@ namespace OnGeniiConsoleApp
 {
     internal class Program
     {
+        public class Question
+        {
+            public string Quest { get; set; }
+            public int Answer { get; set; }
+            public Question(string question, int answer)
+            {
+                Quest = question;
+                Answer = answer;
+            }
+        }
+        public class QuestionStorage
+        {
+            public List<Question> Questions { get; set; }
+
+        }
         static (string[], int[]) GetQuestions(int countQuestions)
         {
             string[] questions = new string[countQuestions];
@@ -60,60 +76,73 @@ namespace OnGeniiConsoleApp
             return diagnoses[index];
 
         }
-        //static void Main(string[] args)
-        //{
-        //    string[] d = GetDiagnoses();
-        //}
 
         static void Main(string[] args)
         {
-            bool work_flag = true;
-            while (work_flag)
-            {
+            string answer = GetDiagnoses(2, 5);
 
-                Console.WriteLine("Введите Ваше имя?");
-                string username = Console.ReadLine();
 
-                int countRightAnswers = 0;
-                int countQuestions = 5;
-
-                string[] questions = GetQuestions(countQuestions).Item1;
-                int[] answers = GetQuestions(countQuestions).Item2;
-
-                for (int i = 0; i < countQuestions; i++)
-                {
-                    Console.WriteLine("Вопрос №" + (i + 1));
-                    Console.WriteLine(questions[i]);
-                    bool isInputCorrect = false;
-                    double userAnswer = 0;
-                    while (isInputCorrect == false)
-                    {
-                        string userInput = Console.ReadLine();
-                        isInputCorrect = double.TryParse(userInput, out userAnswer);
-                        if (isInputCorrect == false)
-                        {
-                            Console.WriteLine("Пожалуйста, введите число!");
-                            Console.WriteLine("Вопрос №" + (i + 1));
-                            Console.WriteLine(questions[i]);
-                        }
-
-                    }
-
-                    int rightAnswer = answers[i];
-                    if (userAnswer == rightAnswer)
-                    {
-                        countRightAnswers++;
-                    }
-                    Console.WriteLine("Количество правильных ответов: " + countRightAnswers);
-
-                    string diagnose = GetDiagnoses(countRightAnswers, countQuestions);
-
-                    Console.WriteLine($"Дорогой {username}, Ваш диагноз:" + diagnose);
-                }
-                Console.WriteLine("Пройдем тест снова? y/n");
-                if (Console.ReadLine() == "n") { work_flag = false; }
-                //комментарий новые по разному всякое
-            }
         }
+
+        //static void Main(string[] args)
+        //{
+        //    bool work_flag = true;
+        //    while (work_flag)
+        //    {
+
+        //        Console.WriteLine("Введите Ваше имя?");
+        //        string username = Console.ReadLine();
+
+        //        int countRightAnswers = 0;
+        //        int countQuestions = 5;
+
+        //        string[] questions = GetQuestions(countQuestions).Item1;
+        //        int[] answers = GetQuestions(countQuestions).Item2;
+
+        //        for (int i = 0; i < countQuestions; i++)
+        //        {
+        //            Console.WriteLine("Вопрос №" + (i + 1));
+        //            Console.WriteLine(questions[i]);
+        //            bool isInputCorrect = false;
+        //            double userAnswer = 0;
+        //            while (isInputCorrect == false)
+        //            {
+        //                string userInput = Console.ReadLine();
+        //                isInputCorrect = double.TryParse(userInput, out userAnswer);
+        //                if (isInputCorrect == false)
+        //                {
+        //                    Console.WriteLine("Пожалуйста, введите число!");
+        //                    Console.WriteLine("Вопрос №" + (i + 1));
+        //                    Console.WriteLine(questions[i]);
+        //                }
+
+        //            }
+
+        //            int rightAnswer = answers[i];
+        //            if (userAnswer == rightAnswer)
+        //            {
+        //                countRightAnswers++;
+        //            }
+
+        //        }
+        //        Console.WriteLine("Количество правильных ответов: " + countRightAnswers);
+        //        string diagnose = GetDiagnoses(countRightAnswers, countQuestions);
+        //        Console.WriteLine($"Дорогой {username}, Ваш диагноз:" + diagnose);
+
+        //        //запись результата игры
+        //        using (FileStream fstream = new FileStream("results.txt", FileMode.Append))
+        //        {
+        //            string result = string.Format("|| {0, -15} || {1, 5} || {2, 10}||", username, countRightAnswers, diagnose);
+
+        //            byte[] buffer = Encoding.Default.GetBytes(result);
+
+        //            fstream.Write(buffer, 0, buffer.Length);
+        //        }
+
+        //        Console.WriteLine("Пройдем тест снова? y/n");
+        //        if (Console.ReadLine() == "n") { work_flag = false; }
+        //        //комментарий новые по разному всякое
+        //    }
+        //}
     }
 }
