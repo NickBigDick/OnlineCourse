@@ -9,6 +9,42 @@ namespace OnGeniiConsoleApp
 {
     internal class Program
     {
+        public class User
+        {
+            public string Name { get; }
+            public UserResultStorage Storage { get; }
+
+            public void AddResult(string result)
+            {
+                Storage.Results.Add(result);
+            }
+
+            public void ShowResults()
+            {
+                foreach(string result in Storage.Results)
+                {
+                    Console.WriteLine(result);
+                }
+            }
+
+            public User(string name)
+            {
+                Name = name;
+                Storage = new UserResultStorage(this);
+
+            }
+        }
+
+        public class UserResultStorage
+        {
+            public User User { get; }
+            public List<string> Results { get; set; }
+            public UserResultStorage(User user)
+            {
+                User = user;
+                Results = new List<string>();
+            }
+        }
         public class Question
         {
             public string Quest { get; set; }
@@ -22,6 +58,28 @@ namespace OnGeniiConsoleApp
         public class QuestionStorage
         {
             public List<Question> Questions { get; set; }
+            public QuestionStorage()
+            {
+                Questions = new List<Question>()
+                {
+                    new Question("Сколько будет два плюс два умноженное на два?", 6),
+                    new Question("Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?", 9),
+                    new Question("На двух руках 10 пальцев. Сколько пальцев на 5 руках?", 25),
+                    new Question("Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?", 60),
+                    new Question("Пять свечей горело, две потухли. Сколько свечей осталось?", 2)
+                };
+            }
+
+            public void AddQuestion(Question quest)
+            {
+                Questions.Add(quest);
+            }
+
+            public void RemoveQuestion(string quest)
+            {
+                bool r = Questions.RemoveAll(q => q.Quest == quest) == 0;
+                if (r) { Console.WriteLine("Вопрос не найден"); } else { Console.WriteLine("Вопрос удален"); }
+            }
 
         }
         static (string[], int[]) GetQuestions(int countQuestions)
@@ -79,30 +137,34 @@ namespace OnGeniiConsoleApp
 
         static void Main(string[] args)
         {
-            string answer = GetDiagnoses(2, 5);
-
-
+            QuestionStorage questionStorage = new QuestionStorage();
+            User user = new User("Коля");
+            user.AddResult("вот первый результат");
+            user.ShowResults();
+            questionStorage.AddQuestion(new Question("Сколько ног у коровы?", 4));
+            questionStorage.AddQuestion(new Question("Сколько ног у коровы?", 4));
+            questionStorage.RemoveQuestion("Сколько ног у коровы?");
+            foreach (Question question in questionStorage.Questions)
+            {
+                Console.WriteLine(question.Quest);
+            }
         }
 
         //static void Main(string[] args)
         //{
         //    bool work_flag = true;
+        //    Console.WriteLine("Введите Ваше имя?");
+        //    User user = new User(Console.ReadLine());
+        //    int countRightAnswers = 0;
+        //    int countQuestions = 5;
         //    while (work_flag)
         //    {
 
-        //        Console.WriteLine("Введите Ваше имя?");
-        //        string username = Console.ReadLine();
 
-        //        int countRightAnswers = 0;
-        //        int countQuestions = 5;
-
-        //        string[] questions = GetQuestions(countQuestions).Item1;
-        //        int[] answers = GetQuestions(countQuestions).Item2;
-
-        //        for (int i = 0; i < countQuestions; i++)
+        //        QuestionStorage questionStorage = new QuestionStorage();
+        //        foreach(Question question in questionStorage.Questions)
         //        {
-        //            Console.WriteLine("Вопрос №" + (i + 1));
-        //            Console.WriteLine(questions[i]);
+        //            Console.WriteLine(question.Quest);
         //            bool isInputCorrect = false;
         //            double userAnswer = 0;
         //            while (isInputCorrect == false)
@@ -112,32 +174,32 @@ namespace OnGeniiConsoleApp
         //                if (isInputCorrect == false)
         //                {
         //                    Console.WriteLine("Пожалуйста, введите число!");
-        //                    Console.WriteLine("Вопрос №" + (i + 1));
-        //                    Console.WriteLine(questions[i]);
+        //                    Console.WriteLine(question.Quest);
         //                }
-
+        //                int rightAnswer = question.Answer;
+        //                if (userAnswer == rightAnswer)
+        //                {
+        //                    countRightAnswers++;
+        //                }
         //            }
-
-        //            int rightAnswer = answers[i];
-        //            if (userAnswer == rightAnswer)
-        //            {
-        //                countRightAnswers++;
-        //            }
-
         //        }
         //        Console.WriteLine("Количество правильных ответов: " + countRightAnswers);
         //        string diagnose = GetDiagnoses(countRightAnswers, countQuestions);
-        //        Console.WriteLine($"Дорогой {username}, Ваш диагноз:" + diagnose);
+        //        Console.WriteLine($"Дорогой {user.Name}, Ваш диагноз:" + diagnose);
+
+
 
         //        //запись результата игры
         //        using (FileStream fstream = new FileStream("results.txt", FileMode.Append))
         //        {
-        //            string result = string.Format("|| {0, -15} || {1, 5} || {2, 10}||", username, countRightAnswers, diagnose);
+        //            string result = string.Format("|| {0, -15} || {1, 5} || {2, 10}||\n", user.Name, countRightAnswers, diagnose);
+        //            user.AddResult(result);
 
         //            byte[] buffer = Encoding.Default.GetBytes(result);
 
         //            fstream.Write(buffer, 0, buffer.Length);
         //        }
+        //        user.ShowResults();
 
         //        Console.WriteLine("Пройдем тест снова? y/n");
         //        if (Console.ReadLine() == "n") { work_flag = false; }
