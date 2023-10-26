@@ -135,76 +135,76 @@ namespace OnGeniiConsoleApp
 
         }
 
-        static void Main(string[] args)
-        {
-            QuestionStorage questionStorage = new QuestionStorage();
-            User user = new User("Коля");
-            user.AddResult("вот первый результат");
-            user.ShowResults();
-            questionStorage.AddQuestion(new Question("Сколько ног у коровы?", 4));
-            questionStorage.AddQuestion(new Question("Сколько ног у коровы?", 4));
-            questionStorage.RemoveQuestion("Сколько ног у коровы?");
-            foreach (Question question in questionStorage.Questions)
-            {
-                Console.WriteLine(question.Quest);
-            }
-        }
-
         //static void Main(string[] args)
         //{
-        //    bool work_flag = true;
-        //    Console.WriteLine("Введите Ваше имя?");
-        //    User user = new User(Console.ReadLine());
-        //    int countRightAnswers = 0;
-        //    int countQuestions = 5;
-        //    while (work_flag)
+        //    QuestionStorage questionStorage = new QuestionStorage();
+        //    User user = new User("Коля");
+        //    user.AddResult("вот первый результат");
+        //    user.ShowResults();
+        //    questionStorage.AddQuestion(new Question("Сколько ног у коровы?", 4));
+        //    questionStorage.AddQuestion(new Question("Сколько ног у коровы?", 4));
+        //    questionStorage.RemoveQuestion("Сколько ног у коровы?");
+        //    foreach (Question question in questionStorage.Questions)
         //    {
-
-
-        //        QuestionStorage questionStorage = new QuestionStorage();
-        //        foreach(Question question in questionStorage.Questions)
-        //        {
-        //            Console.WriteLine(question.Quest);
-        //            bool isInputCorrect = false;
-        //            double userAnswer = 0;
-        //            while (isInputCorrect == false)
-        //            {
-        //                string userInput = Console.ReadLine();
-        //                isInputCorrect = double.TryParse(userInput, out userAnswer);
-        //                if (isInputCorrect == false)
-        //                {
-        //                    Console.WriteLine("Пожалуйста, введите число!");
-        //                    Console.WriteLine(question.Quest);
-        //                }
-        //                int rightAnswer = question.Answer;
-        //                if (userAnswer == rightAnswer)
-        //                {
-        //                    countRightAnswers++;
-        //                }
-        //            }
-        //        }
-        //        Console.WriteLine("Количество правильных ответов: " + countRightAnswers);
-        //        string diagnose = GetDiagnoses(countRightAnswers, countQuestions);
-        //        Console.WriteLine($"Дорогой {user.Name}, Ваш диагноз:" + diagnose);
-
-
-
-        //        //запись результата игры
-        //        using (FileStream fstream = new FileStream("results.txt", FileMode.Append))
-        //        {
-        //            string result = string.Format("|| {0, -15} || {1, 5} || {2, 10}||\n", user.Name, countRightAnswers, diagnose);
-        //            user.AddResult(result);
-
-        //            byte[] buffer = Encoding.Default.GetBytes(result);
-
-        //            fstream.Write(buffer, 0, buffer.Length);
-        //        }
-        //        user.ShowResults();
-
-        //        Console.WriteLine("Пройдем тест снова? y/n");
-        //        if (Console.ReadLine() == "n") { work_flag = false; }
-        //        //комментарий новые по разному всякое
+        //        Console.WriteLine(question.Quest);
         //    }
         //}
+
+        static void Main(string[] args)
+        {
+            bool work_flag = true;
+            Console.WriteLine("Введите Ваше имя?");
+            User user = new User(Console.ReadLine());
+            int countRightAnswers = 0;
+            int countQuestions = 5;
+            while (work_flag)
+            {
+
+
+                QuestionStorage questionStorage = new QuestionStorage();
+                foreach (Question question in questionStorage.Questions)
+                {
+                    Console.WriteLine(question.Quest);
+                    bool isInputCorrect = false;
+                    double userAnswer = 0;
+                    while (isInputCorrect == false)
+                    {
+                        string userInput = Console.ReadLine();
+                        isInputCorrect = double.TryParse(userInput, out userAnswer);
+                        if (isInputCorrect == false)
+                        {
+                            Console.WriteLine("Пожалуйста, введите число!");
+                            Console.WriteLine(question.Quest);
+                        }
+                        int rightAnswer = question.Answer;
+                        if (userAnswer == rightAnswer)
+                        {
+                            countRightAnswers++;
+                        }
+                    }
+                }
+                Console.WriteLine("Количество правильных ответов: " + countRightAnswers);
+                string diagnose = GetDiagnoses(countRightAnswers, countQuestions);
+                Console.WriteLine($"Дорогой {user.Name}, Ваш диагноз:" + diagnose);
+
+
+
+                //запись результата игры
+                using (FileStream fstream = new FileStream("results.txt", FileMode.Append))
+                {
+                    string result = string.Format("|| {0, -15} || {1, 5} || {2, 10}||\n", user.Name, countRightAnswers, diagnose);
+                    user.AddResult(result);
+
+                    byte[] buffer = Encoding.Default.GetBytes(result);
+
+                    fstream.Write(buffer, 0, buffer.Length);
+                }
+                user.ShowResults();
+
+                Console.WriteLine("Пройдем тест снова? y/n");
+                if (Console.ReadLine() == "n") { work_flag = false; }
+                //комментарий новые по разному всякое
+            }
+        }
     }
 }
