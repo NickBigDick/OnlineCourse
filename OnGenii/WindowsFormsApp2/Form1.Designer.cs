@@ -46,7 +46,7 @@
             // nextButton
             // 
             this.nextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nextButton.Location = new System.Drawing.Point(104, 229);
+            this.nextButton.Location = new System.Drawing.Point(156, 245);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(100, 53);
             this.nextButton.TabIndex = 0;
@@ -58,27 +58,29 @@
             // 
             this.userAnswerTextBox.Location = new System.Drawing.Point(12, 169);
             this.userAnswerTextBox.Name = "userAnswerTextBox";
-            this.userAnswerTextBox.Size = new System.Drawing.Size(171, 20);
+            this.userAnswerTextBox.Size = new System.Drawing.Size(67, 20);
             this.userAnswerTextBox.TabIndex = 1;
             // 
             // questionNumberLabel
             // 
             this.questionNumberLabel.AutoSize = true;
-            this.questionNumberLabel.Location = new System.Drawing.Point(12, 67);
+            this.questionNumberLabel.Location = new System.Drawing.Point(174, 58);
             this.questionNumberLabel.Name = "questionNumberLabel";
             this.questionNumberLabel.Size = new System.Drawing.Size(64, 13);
             this.questionNumberLabel.TabIndex = 2;
             this.questionNumberLabel.Text = "Вопрос №1";
+            this.questionNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // questionTextLabel
             // 
             this.questionTextLabel.AutoSize = true;
             this.questionTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.questionTextLabel.Location = new System.Drawing.Point(12, 92);
+            this.questionTextLabel.Location = new System.Drawing.Point(8, 106);
             this.questionTextLabel.Name = "questionTextLabel";
             this.questionTextLabel.Size = new System.Drawing.Size(118, 20);
             this.questionTextLabel.TabIndex = 3;
             this.questionTextLabel.Text = "Текст вопроса";
+            this.questionTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // menuStrip1
             // 
