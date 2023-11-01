@@ -16,6 +16,8 @@ namespace _2048WinFormsApp
         private const int mapSize = 4;
         private static Random random = new Random();
         private int score = 0;
+        private int bestScore = (int) Properties.Settings.Default["theBestScore"];
+
         public MainForm()
         {
             InitializeComponent();
@@ -26,11 +28,25 @@ namespace _2048WinFormsApp
             InitMap();
             GenerateNumber();
             ShowScore();
+            ShowBestScore();
+
         }
 
         private void ShowScore()
         {
             scoreLabel.Text = score.ToString();
+        }
+
+        private void ShowBestScore()
+        {
+            if (score > bestScore)
+            {
+                bestScore = score;
+                Properties.Settings.Default["theBestScore"] = bestScore;
+                Properties.Settings.Default.Save();
+            }
+            bestScoreLabel.Text = bestScore.ToString();
+
         }
 
         private void GenerateNumber()
@@ -42,7 +58,9 @@ namespace _2048WinFormsApp
                 var indexCol = randomNumberLabel % mapSize;
                 if (LabelsMap[indexRow, indexCol].Text == string.Empty)
                 {
-                    LabelsMap[indexRow, indexCol].Text = "2";
+                    string[] generativeNumbers = { "2", "2", "2", "4"};
+                    var randomValueIndex = random.Next(4);
+                    LabelsMap[indexRow, indexCol].Text = generativeNumbers[randomValueIndex];
                     break;
                 }
                 
@@ -263,6 +281,44 @@ namespace _2048WinFormsApp
             }
             GenerateNumber();
             ShowScore();
+            ShowBestScore();
+
         }
+
+
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Label label in LabelsMap)
+            {
+                label.Text = string.Empty;
+            }
+            score = 0;
+            GenerateNumber();
+            ShowScore();
+            changeLabelColor();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Здесь описаны главные правила игры в 2048!", "Правила игры");
+        }
+
+        private void changeLabelColor()
+        {
+
+            foreach (Label label in LabelsMap)
+            {
+
+                int.TryParse(label.Text, out int labelValue);
+                int alphaColor = labelValue / 1000 * 256;
+                label.BackColor = Color.Azure;
+            }
+        }
+
     }
 }
