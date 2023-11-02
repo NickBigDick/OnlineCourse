@@ -12,8 +12,7 @@ namespace BallGamesWindowsFormsApp
 {
     public partial class MainForm : Form
     {
-        List<MoveBall> moveBalls;
-        PointBall pointBall;
+        List<Ball> moveBalls;
         public MainForm()
         {
             InitializeComponent();
@@ -51,7 +50,7 @@ namespace BallGamesWindowsFormsApp
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            moveBalls = new List<MoveBall>();
+            moveBalls = new List<Ball>();
             for (int i = 0;i < 10; i++)
             {
                 MoveBall moveBall = new MoveBall(this);

@@ -11,11 +11,11 @@ namespace BallGamesWindowsFormsApp
     public class Ball
     {
         private MainForm form;
-        protected int x;
-        protected int y;
+        protected int centerX;
+        protected int centerY;
         protected int vx = 1;
         protected int vy = 1;
-        protected int size = 30;
+        protected int radius = 25;
 
         public Ball(MainForm form)
         {
@@ -24,29 +24,25 @@ namespace BallGamesWindowsFormsApp
 
         public void Show()
         {
-            var graphics = form.CreateGraphics();
             var brash = Brushes.Aqua;
-            var rectangle = new Rectangle(x, y, size, size);
-            graphics.FillEllipse(brash, rectangle);
+            Draw(brash);
         }
 
         private void Go()
         {
-            x += vx;
-            y += vy;
+            centerX += vx;
+            centerY += vy;
         }
         private void Clear()
         {
-            var graphics = form.CreateGraphics();
             var brash = Brushes.Silver;
-            var rectangle = new Rectangle(x, y, size, size);
-            graphics.FillEllipse(brash, rectangle);
+            Draw(brash);
 
         }
 
         public bool IsBallInForm()
         {
-            if (form.Width >= x && x >= 0 && form.Height >= y && y >= 0)
+            if (form.Width >= centerX && centerX >= 0 && form.Height >= centerY && centerY >= 0)
             {
                 return true;
             }
@@ -55,7 +51,7 @@ namespace BallGamesWindowsFormsApp
 
         public bool IsPointInCircle(Point point)
         {
-            bool check = Math.Pow(x - point.X, 2) + Math.Pow(y - point.Y, 2) <= Math.Pow(size, 2);
+            bool check = Math.Pow(centerX - point.X, 2) + Math.Pow(centerY - point.Y, 2) <= Math.Pow(radius, 2);
             if (check) { return true; }
             return false;
         }
@@ -66,6 +62,29 @@ namespace BallGamesWindowsFormsApp
             Show();
         }
 
-        
+        private void Draw(Brush brush)
+        {
+            var graphics = form.CreateGraphics();
+            var rectangle = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+            graphics.FillEllipse(brush, rectangle);
+        }
+
+        public int LeftSide()
+        {
+            return radius;
+        }
+
+        public int RightSide()
+        {
+            return form.Width - radius;
+        }
+        public int TopSide()
+        {
+            return radius;
+        }
+        public int DownSide()
+        {
+            return form.Height - radius;
+        }
     }
 }
