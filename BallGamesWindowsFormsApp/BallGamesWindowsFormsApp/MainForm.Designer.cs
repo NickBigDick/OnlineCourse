@@ -61,7 +61,7 @@
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(183, 23);
             this.createButton.TabIndex = 2;
-            this.createButton.Text = "СоздатьУдивительные шарики";
+            this.createButton.Text = "СоздатьДвигающиеся шарики";
             this.createButton.UseVisualStyleBackColor = true;
             this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 

@@ -1,19 +1,14 @@
-﻿using System;
+﻿using BallsCommon;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BallGamesWindowsFormsApp
 {
     public partial class MainForm : Form
     {
-        List<MoveBall> moveBalls;
-        PointBall pointBall;
+        List<Ball> moveBalls;
         public MainForm()
         {
             InitializeComponent();
@@ -27,7 +22,7 @@ namespace BallGamesWindowsFormsApp
 
         private void manyBalls_Click(object sender, EventArgs e)
         {
-            moveBalls = new List<MoveBall>();
+            moveBalls = new List<Ball>();
             for (int i = 0; i < 10;  i++)
             {
                 MoveBall moveBall = new MoveBall(this);
@@ -51,7 +46,7 @@ namespace BallGamesWindowsFormsApp
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            moveBalls = new List<MoveBall>();
+            moveBalls = new List<Ball>();
             for (int i = 0;i < 10; i++)
             {
                 MoveBall moveBall = new MoveBall(this);
