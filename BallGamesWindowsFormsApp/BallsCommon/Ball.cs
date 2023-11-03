@@ -6,38 +6,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BallGamesWindowsFormsApp
+namespace BallsCommon
 {
     public class Ball
     {
-        private MainForm form;
+        private Form form;
         protected int centerX;
         protected int centerY;
         protected int vx = 1;
         protected int vy = 1;
         protected int radius = 25;
+        protected Brush ballBrush = Brushes.Aqua;
 
-        public Ball(MainForm form)
+        public Ball(Form form)
         {
             this.form = form;
         }
 
         public void Show()
         {
-            var brash = Brushes.Aqua;
-            Draw(brash);
+            Draw(ballBrush);
         }
 
-        private void Go()
+        protected virtual void Go()
         {
             centerX += vx;
             centerY += vy;
         }
         private void Clear()
         {
-            var brash = Brushes.Silver;
-            Draw(brash);
-
+            Draw(Brushes.Gainsboro);
         }
 
         public bool IsBallInForm()
@@ -58,7 +56,7 @@ namespace BallGamesWindowsFormsApp
         public void Move()
         {
             Clear();
-            Go(); 
+            Go();
             Show();
         }
 

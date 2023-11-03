@@ -6,12 +6,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BallGamesWindowsFormsApp
+namespace BallsCommon
 {
     public class MoveBall : RandomPointBall
     {
         private System.Windows.Forms.Timer timer;
-        public MoveBall(MainForm form) : base(form)
+        public MoveBall(Form form) : base(form)
         {
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 20;
