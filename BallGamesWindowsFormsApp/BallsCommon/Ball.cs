@@ -11,10 +11,10 @@ namespace BallsCommon
     public class Ball
     {
         private Form form;
-        protected int centerX;
-        protected int centerY;
-        protected int vx = 1;
-        protected int vy = 1;
+        protected float centerX;
+        protected float centerY;
+        protected float vx = 1;
+        protected float vy = 1;
         protected int radius = 25;
         protected Brush ballBrush = Brushes.Aqua;
 
@@ -33,7 +33,7 @@ namespace BallsCommon
             centerX += vx;
             centerY += vy;
         }
-        private void Clear()
+        public void Clear()
         {
             Draw(Brushes.Gainsboro);
         }
@@ -63,24 +63,24 @@ namespace BallsCommon
         private void Draw(Brush brush)
         {
             var graphics = form.CreateGraphics();
-            var rectangle = new Rectangle(centerX - radius, centerY - radius, 2 * radius, 2 * radius);
+            var rectangle = new Rectangle((int)(centerX - radius), (int)(centerY - radius), 2 * radius, 2 * radius);
             graphics.FillEllipse(brush, rectangle);
         }
 
-        public int LeftSide()
+        public float LeftSide()
         {
             return radius;
         }
 
-        public int RightSide()
+        public float RightSide()
         {
             return form.Width - radius;
         }
-        public int TopSide()
+        public float TopSide()
         {
             return radius;
         }
-        public int DownSide()
+        public float DownSide()
         {
             return form.Height - radius;
         }
