@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallsCommon", "BallsCommon\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalutWINFormApp", "SalutWINFormApp\SalutWINFormApp.csproj", "{AA9FC861-EE33-43D0-875C-ADAB48CF4C36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngryBirdsWinFormApp", "AngryBirdsWinFormApp\AngryBirdsWinFormApp.csproj", "{6F44C008-9ABB-419F-8C2F-2FAEFB6BE460}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{AA9FC861-EE33-43D0-875C-ADAB48CF4C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA9FC861-EE33-43D0-875C-ADAB48CF4C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA9FC861-EE33-43D0-875C-ADAB48CF4C36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F44C008-9ABB-419F-8C2F-2FAEFB6BE460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F44C008-9ABB-419F-8C2F-2FAEFB6BE460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F44C008-9ABB-419F-8C2F-2FAEFB6BE460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F44C008-9ABB-419F-8C2F-2FAEFB6BE460}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
