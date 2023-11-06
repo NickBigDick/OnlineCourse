@@ -71,7 +71,6 @@ namespace BallsCommon
         {
             return radius;
         }
-
         public float RightSide()
         {
             return form.Width - radius;

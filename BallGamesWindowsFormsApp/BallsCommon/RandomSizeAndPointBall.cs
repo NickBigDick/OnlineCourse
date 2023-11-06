@@ -5,10 +5,10 @@ namespace BallsCommon
 {
     public class RandomSizeAndPointBall: RandomPointBall
     {
-        protected static Random random = new Random();
+        protected static Random newrandom = new Random();
         public RandomSizeAndPointBall(Form form):base(form)
         {
-            radius = random.Next(10, 70);
+            radius = newrandom.Next(10, 70);
         }
     }
 }
